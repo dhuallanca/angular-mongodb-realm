@@ -1,0 +1,55 @@
+<p>product works!</p>
+<form [formGroup]="formProduct">
+    <mat-card class="card">
+        <mat-form-field class="example-full-width">
+            <mat-label>Producto</mat-label>
+            <input matInput type="text" value="" formControlName="productname">
+            <mat-error *ngIf="formProduct.get('productname').hasError('required')">
+                Ingrese nombre del producto
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Características</mat-label>
+            <textarea matInput type="text" value="" formControlName="features">
+            </textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de lanzamiento</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="dateRelease">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" value="" formControlName="email">
+            <mat-error *ngIf="formProduct.get('email').hasError('email')">
+                Email incorrecto
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Favorite food</mat-label>
+            <mat-select formControlName="country">
+                <mat-option *ngFor="let country of countries" [value]="country">
+                    {{food.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Precio</mat-label>
+            <span matPrefix>US$ &nbsp;</span>
+            <input type="number" step="0.01" matInput placeholder="" formControlName="price">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Unid. disponible</mat-label>
+            <input type="number" matInput placeholder="" formControlName="unitAvailable">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Unid. vendidas</mat-label>
+            <input type="number" matInput placeholder="" formControlName="unitSold">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" [disabled]="!formProduct.valid" (click)="onSave()">Guardar</button>
+
+    </mat-card>
+</form>

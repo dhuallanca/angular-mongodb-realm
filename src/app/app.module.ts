@@ -7,14 +7,15 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './login/login.service';
 import { SharedModule } from './shared.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
     SharedModule,
+    AppRoutingModule,
   ],
   providers: [LoginService],
   bootstrap: [AppComponent],
