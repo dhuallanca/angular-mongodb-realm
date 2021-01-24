@@ -119,15 +119,22 @@
         margin-left: 60px;
     }
     
+    .user-name {
+        color: white;
+        margin-right: 20px;
+    }
+    
     a,
     a:visited,
     a:hover {
-        color: #1976d2;
+        color: white;
         text-decoration: none;
+        cursor: pointer;
+        margin-right: 20px;
     }
     
     a:hover {
-        color: #125699;
+        color: white;
     }
     /* Responsive Styles */
     
@@ -150,8 +157,9 @@
     <span>Welcome</span>
     <div class="spacer"></div>
     <img/>
-    <span>Nombre</span>
-    <a>Login</a>
+    <span class="user-name">{{userName}}</span>
+    <a *ngIf="!isLogged" (click)="onOpenLogin()">Login</a>
+    <a *ngIf="isLogged" (click)="onLogout()">Logout</a>
 </div>
 
 <div class="content" role="main">
