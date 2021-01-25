@@ -24,7 +24,6 @@ export class AppComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
       this.userName = this.loginService.userLogged;
       this.router.navigate(['products']);
     });

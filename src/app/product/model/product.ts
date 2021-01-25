@@ -1,12 +1,12 @@
 export interface Product {
-  _id: string;
+  _id?: string;
   nombre: string;
   caracteristica: string;
-  fechaLanzamiento: Date;
+  fechaLanzamiento: string;
   email: string;
   paisFabricacion: string;
   precio: number;
   unidadesVendidas: number;
   unidadesDisponibles: number;
-  imagenURL: string;
+  imagenURL?: string;
 }

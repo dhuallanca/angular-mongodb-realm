@@ -1,1 +1,44 @@
-<p>list works!</p>
+<p>Lista de productos!</p>
+<mat-card>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Fecha Lanzamiento</th>
+                <th>País Fabricacion</th>
+                <th>Precio</th>
+                <th>Unid. Vendidas</th>
+                <th>Unid. Disponibles</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products" (click)="onNavigateToEdit(product._id)">
+                <td>{{ product.nombre }}</td>
+                <td>{{ product.fechaLanzamiento }}</td>
+                <td>{{ product.paisFabricacion }}</td>
+                <td>{{ product.precio }}</td>
+                <td>{{ product.unidadesVendidas }}</td>
+                <td>{{ product.unidadesDisponibles }}</td>
+                <td><a (click)="onDelete()">Eliminar</a></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td><span>{{totalItems}} items </span>
+                    <a class="first-page" (click)="pageChanged('first')"><span>«</span></a>
+                    <a class="prev-page" (click)="pageChanged('previous')"><span>‹</span></a>
+                    <span>{{currentPage}} of {{lastPage}}</span>
+                    <a class="next-page" (click)="pageChanged('next')"><span>›</span></a>
+                    <a class="last-page" (click)="pageChanged('last')"><span>»</span></a>
+                </td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+</mat-card>
+<h3>
+    <a [routerLink]="['/products/create']">
+    Agregar Producto
+  </a>
+</h3>
