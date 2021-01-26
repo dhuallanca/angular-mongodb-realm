@@ -157,6 +157,7 @@
     <span>Bienvenido</span>
     <div class="spacer"></div>
     <img/>
+    <a *ngIf="isLogged" (click)="onNavigateToProducts()">Productos</a>
     <span class="user-name">{{userName}}</span>
     <a *ngIf="!isLogged" (click)="onOpenLogin()">Login</a>
     <a *ngIf="isLogged" (click)="onLogout()">Logout</a>

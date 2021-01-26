@@ -57,6 +57,25 @@ export class ProductService {
     });
   }
 
+  update(product: Product): Promise<any> {
+    const productCollection = this.getCollection();
+
+    return productCollection.updateOne(
+      { _id: new Realm.BSON.ObjectId(product._id) },
+      {
+        nombre: product.nombre,
+        caracteristica: product.caracteristica,
+        fechaLanzamiento: product.fechaLanzamiento,
+        email: product.email,
+        paisFabricacion: product.paisFabricacion,
+        precio: product.precio,
+        unidadesVendidas: product.unidadesVendidas,
+        unidadesDisponibles: product.unidadesDisponibles,
+        imagenURL: product.imagenURL,
+      }
+    );
+  }
+
   getProducts(): Promise<Product[]> {
     const productCollection = this.getCollection();
     return productCollection.find();

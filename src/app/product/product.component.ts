@@ -25,9 +25,7 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.countryService
-      .getCountries()
-      .subscribe((data) => (this.countries = data));
+    this.getCountries();
     const id = this.activatedRoute.snapshot.params.id;
     if (id) {
       this.productService.getProduct(id).then((data) => {
@@ -51,9 +49,16 @@ export class ProductComponent implements OnInit {
       unidadesDisponibles: this.formProduct.get('unitAvailable').value,
       imagenURL: '',
     };
-    this.productService.insert(product).then(() => {
-      this.route.navigate(['/products']);
-    });
+    if (!!this.product) {
+      product._id = this.product._id;
+      this.productService.update(product).then(() => {
+        this.route.navigate(['/products']);
+      });
+    } else {
+      this.productService.insert(product).then(() => {
+        this.route.navigate(['/products']);
+      });
+    }
   }
 
   private buildForm(): void {
@@ -70,5 +75,11 @@ export class ProductComponent implements OnInit {
       unitAvailable: this.product?.unidadesDisponibles || '',
       unitSold: this.product?.unidadesVendidas || '',
     });
+  }
+
+  private getCountries(): void {
+     this.countryService
+       .getCountries()
+       .subscribe((data) => (this.countries = data));
   }
 }

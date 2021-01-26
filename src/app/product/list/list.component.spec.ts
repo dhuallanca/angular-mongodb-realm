@@ -1,9 +1,9 @@
-import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductService } from '../product.service';
 
 import { ListComponent } from './list.component';
 import { ProductsResponseMock } from '../stub/product-stub';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ProductModule } from '../product.module';
 
 describe('ListComponent', () => {
@@ -21,16 +21,14 @@ describe('ListComponent', () => {
     },
   };
   const productServicestub = {
-    getProducts: () => {},
+    getProducts: () => Promise,
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ListComponent],
-      imports: [ProductModule],
+      imports: [ProductModule, RouterTestingModule],
       providers: [
-        { provide: Router, useValue: routerStub },
-        { provide: ActivatedRoute, useValue: activatedRouteStub },
         { provide: ProductService, useValue: productServicestub },
       ],
     }).compileComponents();

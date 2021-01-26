@@ -32,4 +32,7 @@ export class AppComponent {
     this.loginService.userLogged = null;
     this.userName = '';
   }
+  onNavigateToProducts() {
+    this.router.navigate(['products']);
+  }
 }

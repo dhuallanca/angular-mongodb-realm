@@ -28,13 +28,15 @@ export class ListComponent implements OnInit {
         break;
       case 'previous':
         this.currentPage -= 1;
+        if (this.currentPage <= 0) { this.currentPage = 1; }
         this.itemsPaginated(this.currentPage);
         break;
       case 'next':
-        this.itemsPaginated(this.currentPage);
         this.currentPage += 1;
+        this.itemsPaginated(this.currentPage);
         break;
       case 'last':
+        this.itemsPaginated(this.lastPage);
         break;
       default:
     }
@@ -63,6 +65,7 @@ export class ListComponent implements OnInit {
         imagenURL: product.imagenURL,
       }));
       this.totalItems = this.productDataSource.length;
+      this.lastPage = Math.floor(this.totalItems / this.itemsPerPage);
       if (this.totalItems > this.itemsPerPage) {
         this.products = Object.assign(
           this.products,
@@ -74,9 +77,9 @@ export class ListComponent implements OnInit {
     });
   }
 
-  private itemsPaginated(currentPage: number): void {
-    const since = (currentPage) * this.itemsPerPage;
-    const to = (this.currentPage + 1) * this.itemsPerPage;
+  private itemsPaginated(page: number): void {
+    const since = (page - 1) * this.itemsPerPage;
+    const to = since + this.itemsPerPage;
 
     this.products = Object.assign(this.products, this.productDataSource.slice(since, to));
   }
