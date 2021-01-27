@@ -1,4 +1,6 @@
-export const ProductsResponseMock = [
+import { Product } from '../model/product';
+
+export const ProductsResponseMock: Product[] = [
   {
     _id: '12345601',
     nombre: 'producto1',

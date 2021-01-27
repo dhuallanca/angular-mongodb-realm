@@ -64,16 +64,20 @@ export class ListComponent implements OnInit {
         unidadesDisponibles: product.unidadesDisponibles,
         imagenURL: product.imagenURL,
       }));
+
       this.totalItems = this.productDataSource.length;
       this.lastPage = Math.floor(this.totalItems / this.itemsPerPage);
       if (this.totalItems > this.itemsPerPage) {
-        this.products = Object.assign(
+        Object.assign(
           this.products,
           this.productDataSource.slice(0, this.itemsPerPage)
         );
       } else {
-        this.products = Object.assign(this.products, this.productDataSource);
+        Object.assign(this.products, this.productDataSource);
       }
+    }
+    ).catch((err: any) => {
+      console.log('error', err);
     });
   }
 
